@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AJAX Practice</title>
+</head>
+<body>
+  <h1>A heading.</h1>
+  <button id="shitButton">Give me the shit page</button>
+
+  <script>
+    let loadDoc = (url, callback) => {
+      let xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+          callback(xhttp);
+        }
+      }
+      xhttp.open('GET', url, true);
+      xhttp.send();
+    }
+
+    let shitButton = document.getElementById('shitButton');
+    shitButton.addEventListener('click', (e) => {
+      loadDoc('shit', (xhttp) => {
+        e.target.textContent = xhttp.responseText;
+      })
+    });
+
+
+  </script>
+</body>
+</html>
